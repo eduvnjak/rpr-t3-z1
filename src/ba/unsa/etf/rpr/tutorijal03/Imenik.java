@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.tutorijal03;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Imenik {
     private HashMap<String, TelefonskiBroj> kontakti;
@@ -29,7 +30,7 @@ public class Imenik {
     }
     String naSlovo(char s){
         String spisak = new String();
-        int brojac = 0
+        int brojac = 0;
         for(Map.Entry<String, TelefonskiBroj> entry : kontakti.entrySet()){
             if(entry.getKey().charAt(0) == s){
                 brojac++;
@@ -40,7 +41,14 @@ public class Imenik {
         return spisak;
     }
     Set<String> izGrada(Grad g){
-
+        TreeSet<String> imena = new TreeSet<String>();
+        for(Map.Entry<String, TelefonskiBroj> entry : kontakti.entrySet()){
+            if(entry.getValue() instanceof FiksniBroj){
+                if(g.dajPozivniBroj() == (entry.getValue().ispis().charAt(1)+entry.getValue().ispis().charAt(2)))
+                    imena.add(entry.getValue());
+            }
+        }
+        return imena;
     }
     Set<TelefonskiBroj> izGradaBrojevi(Grad g){
 
