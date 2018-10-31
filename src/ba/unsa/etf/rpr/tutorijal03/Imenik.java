@@ -44,13 +44,19 @@ public class Imenik {
         TreeSet<String> imena = new TreeSet<String>();
         for(Map.Entry<String, TelefonskiBroj> entry : kontakti.entrySet()){
             if(entry.getValue() instanceof FiksniBroj){
-                if(g.dajPozivniBroj() == (entry.getValue().ispis().charAt(1)+entry.getValue().ispis().charAt(2)))
+                if(g == ((FiksniBroj)entry.getValue()).dajGrad()) {
                     imena.add(entry.getValue());
+                }
             }
         }
         return imena;
     }
     Set<TelefonskiBroj> izGradaBrojevi(Grad g){
-
+        TreeSet<TelefonskiBroj> brojevi = new TreeSet<TelefonskiBroj>();
+        for(Map.Entry<String, TelefonskiBroj> entry : kontakti.entrySet()){
+            if(entry.getValue() instanceof FiksniBroj){
+                if(((FiksniBroj) entry.getValue()).dajGrad() == Grad)
+            }
+        }
     }
 }

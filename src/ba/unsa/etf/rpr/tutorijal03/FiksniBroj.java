@@ -6,6 +6,9 @@ public class FiksniBroj extends TelefonskiBroj{
             this.grad = grad;
             this.broj = broj;
     }
+    public Grad dajGrad(){
+        return grad;
+    }
     public String ispis(){
             return  '0'+grad.dajPozivniBroj()+'/'+broj;
         }
