@@ -16,7 +16,7 @@ public class Imenik {
     String dajBroj(String Ime){
         if(kontakti.containsKey(Ime)) {
             TelefonskiBroj trazeniBroj = kontakti.get(Ime);
-            return trazeniBroj.ispis();
+            return trazeniBroj.ispisi();
         }
         return "Ne postoji kontakt sa tim imenom.";
     }
@@ -35,28 +35,30 @@ public class Imenik {
             if(entry.getKey().charAt(0) == s){
                 brojac++;
                 if(brojac != 0) spisak += '\n';
-                spisak += (brojac+". "+entry.getKey()+" - "+entry.getValue().ispis());
+                spisak += (brojac+". "+entry.getKey()+" - "+entry.getValue().ispisi());
             }
         }
         return spisak;
     }
-    Set<String> izGrada(Grad g){
+    Set<String> izGrada(FiksniBroj.Grad g){
         TreeSet<String> imena = new TreeSet<String>();
         for(Map.Entry<String, TelefonskiBroj> entry : kontakti.entrySet()){
             if(entry.getValue() instanceof FiksniBroj){
                 if(g == ((FiksniBroj)entry.getValue()).dajGrad()) {
-                    imena.add(entry.getValue());
+                    imena.add(entry.getKey());
                 }
             }
         }
         return imena;
     }
-    Set<TelefonskiBroj> izGradaBrojevi(Grad g){
+    Set<TelefonskiBroj> izGradaBrojevi(FiksniBroj.Grad g){
         TreeSet<TelefonskiBroj> brojevi = new TreeSet<TelefonskiBroj>();
         for(Map.Entry<String, TelefonskiBroj> entry : kontakti.entrySet()){
             if(entry.getValue() instanceof FiksniBroj){
-                if(((FiksniBroj) entry.getValue()).dajGrad() == Grad)
+                if(((FiksniBroj) entry.getValue()).dajGrad() == g)
+                    brojevi.add(entry.getValue());
             }
         }
+        return brojevi;
     }
 }
